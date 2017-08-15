@@ -1,0 +1,8 @@
+server:
+  port: 3154
+cxf:
+  path: /keep/api/v1
+  jaxrs:
+    component-scan: true
+    classes-scan-packages:
+      com.learning.keep.web.api
