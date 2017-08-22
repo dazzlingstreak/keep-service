@@ -1,10 +1,12 @@
 package com.learning.keep.web.api.test;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 /**
  * Created by huangdawei on 2017/8/15.
  */
+//@XmlRootElement(name = "testModel")
 public class TestModel {
 
     private String name;
