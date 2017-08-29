@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.awt.*;
 
 /**
  * Created by huangdawei on 2017/8/22.
@@ -32,5 +31,11 @@ public class OrderApi {
         OrderVO orderVO = new OrderVO();
         BeanUtils.copyProperties(order, orderVO);
         return orderVO;
+    }
+
+    @POST
+    @Path("/update")
+    @ApiOperation("更新订单信息")
+    public void updateOrder(OrderVO orderVO){
     }
 }

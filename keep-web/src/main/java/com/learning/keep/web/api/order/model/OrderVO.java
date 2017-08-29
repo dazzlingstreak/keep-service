@@ -1,6 +1,8 @@
 package com.learning.keep.web.api.order.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.learning.keep.common.jackson.CustomerDateSerializer;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
@@ -46,7 +48,7 @@ public class OrderVO {
     private Date createTime;
 
     @ApiModelProperty("更新时间")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = CustomerDateSerializer.class)
     private Date updateTime;
 
     @ApiModelProperty("进件时间")
