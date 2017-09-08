@@ -7,6 +7,7 @@ import org.apache.ibatis.type.MappedTypes;
 
 import java.sql.*;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Created by huangdawei on 2017/8/29.
@@ -23,18 +24,27 @@ public class DateTypeHandler extends BaseTypeHandler<Date> {
     @Override
     public Date getNullableResult(ResultSet resultSet, String s) throws SQLException {
         Timestamp timestamp = resultSet.getTimestamp(s);
+        if (Objects.isNull(timestamp)) {
+            return null;
+        }
         return Date.from(timestamp.toInstant());
     }
 
     @Override
     public Date getNullableResult(ResultSet resultSet, int i) throws SQLException {
         Timestamp timestamp = resultSet.getTimestamp(i);
+        if (Objects.isNull(timestamp)) {
+            return null;
+        }
         return Date.from(timestamp.toInstant());
     }
 
     @Override
     public Date getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
         Timestamp timestamp = callableStatement.getTimestamp(i);
+        if (Objects.isNull(timestamp)) {
+            return null;
+        }
         return Date.from(timestamp.toInstant());
     }
 }

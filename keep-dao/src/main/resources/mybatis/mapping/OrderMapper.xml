@@ -245,4 +245,10 @@
       fund_type = #{fundType,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from tfs_order
+    WHERE is_deleted = 0
+  </select>
 </mapper>

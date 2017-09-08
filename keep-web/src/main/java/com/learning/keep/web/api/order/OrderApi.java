@@ -1,5 +1,7 @@
 package com.learning.keep.web.api.order;
 
+import com.learning.keep.dto.PageParam;
+import com.learning.keep.dto.PageResult;
 import com.learning.keep.model.Order;
 import com.learning.keep.service.order.IOrderService;
 import com.learning.keep.web.api.order.model.OrderVO;
@@ -12,6 +14,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by huangdawei on 2017/8/22.
@@ -38,6 +41,13 @@ public class OrderApi {
     @POST
     @Path("/update")
     @ApiOperation("更新订单信息")
-    public void updateOrder(OrderVO orderVO){
+    public void updateOrder(OrderVO orderVO) {
+    }
+
+    @GET
+    @Path("/all")
+    public PageResult<Order> selectAll() {
+        PageResult<Order> orderPageResult = orderService.selectAll(new PageParam());
+        return orderPageResult;
     }
 }

@@ -12,6 +12,7 @@ mybatis:
   mapperLocations: classpath:/mybatis/mapping/*Mapper.xml
   typeAliasesPackage: com.learning.keep.model.*
   typeHandlersPackage: com.learning.keep.dao.typeHandler
+  config-location: classpath:/mybatis-config.xml
 
 spring:
   datasource:
