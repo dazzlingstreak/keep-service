@@ -1,5 +1,6 @@
 package com.learning.keep.web.api.order;
 
+import com.learning.keep.common.utils.BeanListUtils;
 import com.learning.keep.dto.PageParam;
 import com.learning.keep.dto.PageResult;
 import com.learning.keep.model.Order;
@@ -46,8 +47,13 @@ public class OrderApi {
 
     @GET
     @Path("/all")
-    public PageResult<Order> selectAll() {
-        PageResult<Order> orderPageResult = orderService.selectAll(new PageParam());
-        return orderPageResult;
+    public PageResult<OrderVO> selectAll() {
+        PageResult<Order> orderPageResult = orderService.selectAll(new PageParam(1,12));
+        List<Order> orderList = orderPageResult.getItems();
+
+        PageResult<OrderVO> orderVOPageResult = new PageResult<>();
+        List<OrderVO> orderVOList = orderVOPageResult.getItems();
+        BeanListUtils.copyProperties(orderList,orderVOList,OrderVO.class);
+        return orderVOPageResult;
     }
 }
