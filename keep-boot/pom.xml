@@ -11,4 +11,8 @@
 
     <artifactId>keep-boot</artifactId>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>keep-boot-web</module>
+    </modules>
 </project>
