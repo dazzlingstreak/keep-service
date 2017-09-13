@@ -1,9 +1,11 @@
 package com.learning.keep;
 
+import com.learning.keep.properties.WiselySetting;
 import io.swagger.annotations.Api;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
@@ -14,6 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 @MapperScan(
         basePackages = {"com.learning.keep.dao"}
 )
+@EnableConfigurationProperties({WiselySetting.class})
 public class Application {
 
     public static void main(String[] args) {
