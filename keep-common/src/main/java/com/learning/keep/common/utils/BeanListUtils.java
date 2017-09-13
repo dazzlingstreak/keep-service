@@ -1,7 +1,6 @@
 package com.learning.keep.common.utils;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 

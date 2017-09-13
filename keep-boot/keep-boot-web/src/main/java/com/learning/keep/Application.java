@@ -1,6 +1,6 @@
 package com.learning.keep;
 
-import com.learning.keep.properties.WiselySetting;
+import com.learning.keep.properties.OssSettings;
 import io.swagger.annotations.Api;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 @MapperScan(
         basePackages = {"com.learning.keep.dao"}
 )
-@EnableConfigurationProperties({WiselySetting.class})
+@EnableConfigurationProperties({OssSettings.class})
 public class Application {
 
     public static void main(String[] args) {
