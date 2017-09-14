@@ -36,3 +36,10 @@ spring:
       test-on-return: true
       init-s-q-l: 'set names utf8mb4;'
       jdbc-interceptors: ConnectionState;SlowQueryReport(threshold=50) #超过50ms执行的慢查询警告输出
+  redis:
+    host: dev.redis.apitops.com
+    port: 7370
+    password: 663fVzqefn7wn7GSP3995oQCLrcTHb
+    database: 5
+    max-idle: 8
+    max-active: 8

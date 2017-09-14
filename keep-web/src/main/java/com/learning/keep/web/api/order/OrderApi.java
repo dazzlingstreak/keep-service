@@ -47,14 +47,21 @@ public class OrderApi {
     }
 
     @GET
+    @Path("/getOrderNo/{orderId}")
+    @ApiOperation("查询订单中心订单号")
+    public Long selectOrderNoById(@PathParam("orderId") Integer orderId) {
+        return orderService.selectOrderNoById(orderId);
+    }
+
+    @GET
     @Path("/all")
     public PageResult<OrderVO> selectAll() {
-        PageResult<Order> orderPageResult = orderService.selectAll(new PageParam(1,12));
+        PageResult<Order> orderPageResult = orderService.selectAll(new PageParam(1, 12));
         List<Order> orderList = orderPageResult.getItems();
 
         PageResult<OrderVO> orderVOPageResult = new PageResult<>();
         List<OrderVO> orderVOList = orderVOPageResult.getItems();
-        BeanListUtils.copyProperties(orderList,orderVOList,OrderVO.class);
+        BeanListUtils.copyProperties(orderList, orderVOList, OrderVO.class);
         return orderVOPageResult;
     }
 }
