@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learning.keep.dao.foreclosure.ForeclosureInterviewMapper">
+  <resultMap id="BaseResultMap" type="com.learning.keep.model.foreclosure.ForeclosureInterview">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="interview_result" jdbcType="TINYINT" property="interviewResult" />
+    <result column="interview_remark" jdbcType="VARCHAR" property="interviewRemark" />
+    <result column="other_instructions" jdbcType="VARCHAR" property="otherInstructions" />
+    <result column="sign_link_groupId" jdbcType="INTEGER" property="signLinkGroupid" />
+    <result column="bank_promise_link_groupId" jdbcType="INTEGER" property="bankPromiseLinkGroupid" />
+    <result column="interview_materials_groupId" jdbcType="INTEGER" property="interviewMaterialsGroupid" />
+    <result column="foreclosure_materials_groupId" jdbcType="INTEGER" property="foreclosureMaterialsGroupid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="sys_time" jdbcType="TIMESTAMP" property="sysTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, interview_result, interview_remark, other_instructions, sign_link_groupId, 
+    bank_promise_link_groupId, interview_materials_groupId, foreclosure_materials_groupId, 
+    create_time, update_time, sys_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tfs_foreclosure_interview
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tfs_foreclosure_interview
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.learning.keep.model.foreclosure.ForeclosureInterview">
+    insert into tfs_foreclosure_interview (id, order_id, interview_result, 
+      interview_remark, other_instructions, sign_link_groupId, 
+      bank_promise_link_groupId, interview_materials_groupId, 
+      foreclosure_materials_groupId, create_time, 
+      update_time, sys_time)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{interviewResult,jdbcType=TINYINT}, 
+      #{interviewRemark,jdbcType=VARCHAR}, #{otherInstructions,jdbcType=VARCHAR}, #{signLinkGroupid,jdbcType=INTEGER}, 
+      #{bankPromiseLinkGroupid,jdbcType=INTEGER}, #{interviewMaterialsGroupid,jdbcType=INTEGER}, 
+      #{foreclosureMaterialsGroupid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{sysTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.learning.keep.model.foreclosure.ForeclosureInterview">
+    insert into tfs_foreclosure_interview
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="interviewResult != null">
+        interview_result,
+      </if>
+      <if test="interviewRemark != null">
+        interview_remark,
+      </if>
+      <if test="otherInstructions != null">
+        other_instructions,
+      </if>
+      <if test="signLinkGroupid != null">
+        sign_link_groupId,
+      </if>
+      <if test="bankPromiseLinkGroupid != null">
+        bank_promise_link_groupId,
+      </if>
+      <if test="interviewMaterialsGroupid != null">
+        interview_materials_groupId,
+      </if>
+      <if test="foreclosureMaterialsGroupid != null">
+        foreclosure_materials_groupId,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="sysTime != null">
+        sys_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="interviewResult != null">
+        #{interviewResult,jdbcType=TINYINT},
+      </if>
+      <if test="interviewRemark != null">
+        #{interviewRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="otherInstructions != null">
+        #{otherInstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="signLinkGroupid != null">
+        #{signLinkGroupid,jdbcType=INTEGER},
+      </if>
+      <if test="bankPromiseLinkGroupid != null">
+        #{bankPromiseLinkGroupid,jdbcType=INTEGER},
+      </if>
+      <if test="interviewMaterialsGroupid != null">
+        #{interviewMaterialsGroupid,jdbcType=INTEGER},
+      </if>
+      <if test="foreclosureMaterialsGroupid != null">
+        #{foreclosureMaterialsGroupid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysTime != null">
+        #{sysTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.learning.keep.model.foreclosure.ForeclosureInterview">
+    update tfs_foreclosure_interview
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="interviewResult != null">
+        interview_result = #{interviewResult,jdbcType=TINYINT},
+      </if>
+      <if test="interviewRemark != null">
+        interview_remark = #{interviewRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="otherInstructions != null">
+        other_instructions = #{otherInstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="signLinkGroupid != null">
+        sign_link_groupId = #{signLinkGroupid,jdbcType=INTEGER},
+      </if>
+      <if test="bankPromiseLinkGroupid != null">
+        bank_promise_link_groupId = #{bankPromiseLinkGroupid,jdbcType=INTEGER},
+      </if>
+      <if test="interviewMaterialsGroupid != null">
+        interview_materials_groupId = #{interviewMaterialsGroupid,jdbcType=INTEGER},
+      </if>
+      <if test="foreclosureMaterialsGroupid != null">
+        foreclosure_materials_groupId = #{foreclosureMaterialsGroupid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysTime != null">
+        sys_time = #{sysTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.learning.keep.model.foreclosure.ForeclosureInterview">
+    update tfs_foreclosure_interview
+    set order_id = #{orderId,jdbcType=INTEGER},
+      interview_result = #{interviewResult,jdbcType=TINYINT},
+      interview_remark = #{interviewRemark,jdbcType=VARCHAR},
+      other_instructions = #{otherInstructions,jdbcType=VARCHAR},
+      sign_link_groupId = #{signLinkGroupid,jdbcType=INTEGER},
+      bank_promise_link_groupId = #{bankPromiseLinkGroupid,jdbcType=INTEGER},
+      interview_materials_groupId = #{interviewMaterialsGroupid,jdbcType=INTEGER},
+      foreclosure_materials_groupId = #{foreclosureMaterialsGroupid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      sys_time = #{sysTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tfs_foreclosure_interview
+    where order_id = #{orderId}
+  </select>
+</mapper>

@@ -9,7 +9,7 @@ cxf:
       com.learning.keep.web.filter,
       com.fasterxml.jackson.jaxrs.json
 mybatis:
-  mapperLocations: classpath:/mybatis/mapping/*Mapper.xml
+  mapperLocations: classpath:/mybatis/mapping/*Mapper.xml,classpath:/mybatis/mapping/*/*Mapper.xml
   typeAliasesPackage: com.learning.keep.model.*
   typeHandlersPackage: com.learning.keep.dao.typeHandler
   config-location: classpath:/mybatis-config.xml
