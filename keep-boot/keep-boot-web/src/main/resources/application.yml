@@ -14,6 +14,11 @@ mybatis:
   typeHandlersPackage: com.learning.keep.dao.typeHandler
   config-location: classpath:/mybatis-config.xml
 
+shiro:
+  enabled: true
+  web:
+    enabled: true
+
 spring:
   datasource:
     name: '开发环境数据库'

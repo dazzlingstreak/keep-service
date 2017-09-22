@@ -1,5 +1,8 @@
 package com.learning.keep.web.filter;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
@@ -17,6 +20,7 @@ public class ApiOriginFilter implements ContainerResponseFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
+        Subject subject = SecurityUtils.getSubject();
         MultivaluedMap headers = responseContext.getHeaders();
         String origin = requestContext.getHeaderString("Origin");
         String host;
