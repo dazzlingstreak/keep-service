@@ -14,8 +14,8 @@ import java.math.BigDecimal;
 public class MoneySerializer extends JsonSerializer<Long> {
     @Override
     public void serialize(Long aLong, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        BigDecimal bigDecimal = new BigDecimal(aLong.doubleValue() / 10000);
-        double value = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        jsonGenerator.writeString(String.valueOf(value));
+        BigDecimal bigDecimal = new BigDecimal(aLong);
+        BigDecimal divideValue = bigDecimal.divide(new BigDecimal(10000), 2, BigDecimal.ROUND_HALF_UP);
+        jsonGenerator.writeString(String.valueOf(divideValue));
     }
 }
