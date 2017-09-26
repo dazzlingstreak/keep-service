@@ -16,4 +16,5 @@ public interface IOrderService {
     PageResult<Order> selectAll(PageParam param);
 
     Long selectOrderNoById(Integer orderId);
+
 }
