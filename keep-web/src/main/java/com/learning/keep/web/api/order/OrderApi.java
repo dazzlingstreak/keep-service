@@ -8,6 +8,7 @@ import com.learning.keep.service.order.IOrderService;
 import com.learning.keep.web.api.order.model.OrderVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,6 +31,7 @@ public class OrderApi {
     @GET
     @Path("/{orderId}")
     @ApiOperation("查询订单详情")
+    @RequiresPermissions("superx:add")
     public OrderVO selectOrderById(@PathParam("orderId") Integer orderId) {
         Order order = orderService.selectOrderById(orderId);
         OrderVO orderVO = new OrderVO();
