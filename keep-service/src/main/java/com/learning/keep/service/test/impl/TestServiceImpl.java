@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Created by huangdawei on 2017/9/26.
@@ -20,9 +23,9 @@ public class TestServiceImpl implements ITestService {
 
     @Override
     public void test() throws InterruptedException {
-        int taskSize = 5;
+        int taskSize = 40;
 
-//        System.out.println("----同步程序开始运行----");
+//        System.out.println("----单线程开始运行----");
 //        //同步执行
 //        Date syncBeginDate = new Date();
 //        for (int i = 0; i < taskSize; i++) {
@@ -30,30 +33,51 @@ public class TestServiceImpl implements ITestService {
 //            myRunnable.run();
 //        }
 //        Date syncEndDate = new Date();
-//        System.out.println("----同步程序结束运行----，同步程序运行时间【"
+//        System.out.println("----单线程结束运行----，单线程运行时间【"
 //                + (syncEndDate.getTime() - syncBeginDate.getTime()) + "毫秒】");
 
-        System.out.println("----异步程序开始运行----");
+        System.out.println("----多线程开始运行----");
         Date asyncBeginDate = new Date();
-//        ExecutorService executorService = Executors.newFixedThreadPool(taskSize);
+        List<Future<?>> taskResults = new ArrayList<>();
         for (int i = 0; i < taskSize; i++) {
-//            executorService.execute(new MyRunnable());
             MyRunnable myRunnable = new MyRunnable();
-            executor.execute(myRunnable);
+            Future<?> taskResult = executor.submit(myRunnable);
+//            executor.submit(new Runnable() {
+//                @Override
+//                public void run() {
+//                //  do something
+//                }
+//            });
+            taskResults.add(taskResult);
         }
-//        executorService.shutdown();
-        Date asyncEndDate = new Date();
-        System.out.println("----异步程序结束运行----，异步程序运行时间【"
-                + (asyncEndDate.getTime() - asyncBeginDate.getTime()) + "毫秒】");
-        Thread.sleep(1500);
+        while (true) {
+            boolean isAllDone = true;
+            for (Future<?> taskResult : taskResults) {
+                isAllDone &= (taskResult.isDone() || taskResult.isCancelled());
+            }
+            if (isAllDone) {
+                // 任务都执行完毕，跳出循环
+                System.out.println("----多线程结束运行----，多线程运行时间【"
+                        + (System.currentTimeMillis() - asyncBeginDate.getTime()) + "毫秒】");
+                break;
+            }
+            try {
+                System.out.println("waiting and sleep 1000 ...");
+                Thread.sleep(1000);
+
+            } catch (Exception e) {
+                System.out.println(e.toString());
+                break;
+            }
+        }
     }
 
     class MyRunnable implements Runnable {
 
         @Override
         public void run() {
-            System.out.println(">>>任务启动>>>");
             Date dateTmp1 = new Date();
+            System.out.println(">>>任务启动>>> threadId:" + Thread.currentThread().getId() + ";threadName:" + Thread.currentThread().getName() + ";time:" + dateTmp1);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
