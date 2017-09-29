@@ -37,18 +37,18 @@ public class OssHelper {
         PutObjectResult putObjectResult = null;
         try {
             putObjectResult = ossClient.putObject(bucketName, key, stream);
+            if (putObjectResult != null) {
+                ossFileDTO.setKey(key);
+
+                Date expiration = new Date(new Date().getTime() + ossSettings.getExpires() * 60 * 1000);
+                URL url = ossClient.generatePresignedUrl(bucketName, key, expiration);
+                ossFileDTO.setPresignedUri(url.toString());
+            }
         } catch (Exception ex) {
             logger.error("上传失败：{}", ex.getMessage());
+        }finally {
+            ossClient.shutdown();
         }
-        if (putObjectResult != null) {
-            ossFileDTO.setKey(key);
-
-            Date expiration = new Date(new Date().getTime() + ossSettings.getExpires() * 60 * 1000);
-            URL url = ossClient.generatePresignedUrl(bucketName, key, expiration);
-            ossFileDTO.setPresignedUri(url.toString());
-        }
-
-        ossClient.shutdown();
         return ossFileDTO;
     }
 }

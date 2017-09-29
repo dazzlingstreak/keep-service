@@ -25,6 +25,9 @@ public class ShiroConfiguration {
      * 2. 直接使用ShiroFilterFactoryBean（这种方法比较简单，其内部对ShiroFilter做了组装工作，无法自己定义UrlPattern，
      * 默认拦截 /*）
      * 参考：http://blog.csdn.net/catoop/article/details/50520958
+     *
+     * shiro异常参考：http://blog.csdn.net/oshusheng1/article/details/50410258
+     * shiro初级教程：http://www.vxzsk.com/582.html
      */
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilter() {

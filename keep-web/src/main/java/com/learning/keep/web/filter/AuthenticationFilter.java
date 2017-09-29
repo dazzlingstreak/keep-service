@@ -20,6 +20,7 @@ public class AuthenticationFilter implements ContainerRequestFilter, ContainerRe
 
     /**
      * shiro异常参考：http://blog.csdn.net/oshusheng1/article/details/50410258
+     * shiro初级教程：http://www.vxzsk.com/582.html
      */
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
