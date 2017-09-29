@@ -31,7 +31,7 @@ public class OrderApi {
     @GET
     @Path("/{orderId}")
     @ApiOperation("查询订单详情")
-    @RequiresPermissions("superx:add")
+    @RequiresPermissions("super:add")
     public OrderVO selectOrderById(@PathParam("orderId") Integer orderId) {
         Order order = orderService.selectOrderById(orderId);
         OrderVO orderVO = new OrderVO();
