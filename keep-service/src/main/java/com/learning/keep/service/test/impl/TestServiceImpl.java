@@ -88,4 +88,10 @@ public class TestServiceImpl implements ITestService {
             System.out.println(">>>任务结束>>> threadId:" + Thread.currentThread().getId() + ";threadName:" + Thread.currentThread().getName() + ";耗时 " + time + " 毫秒");
         }
     }
+
+    @Override
+    public String test(String name) {
+        System.out.println("TestServiceImpl.test:" + name);
+        return "hello:" + name;
+    }
 }

@@ -22,4 +22,9 @@ public class TestServiceTest {
         testService.test();
     }
 
+    @Test
+    public void testAspect(){
+        testService.test("aspect test");
+    }
+
 }
