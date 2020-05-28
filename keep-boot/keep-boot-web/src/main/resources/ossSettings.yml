@@ -1,7 +1,0 @@
-oss:
-  endpoint: http://oss-cn-hangzhou.aliyuncs.com
-  accessKeyId:
-  accessKeySecret:
-  bucketName: top-loan
-  keyPrefix: keep/dev/
-  expires: 30 #30分钟
