@@ -43,7 +43,7 @@
         <httpclient.version>4.5.3</httpclient.version>
         <aliyun.sdk.oss.version>2.8.1</aliyun.sdk.oss.version>
         <apache.commons.version>3.6</apache.commons.version>
-        <shiro.version>1.3.2</shiro.version>
+        <shiro.version>1.8.0</shiro.version>
         <fastjson.version>1.2.38</fastjson.version>
     </properties>
 
